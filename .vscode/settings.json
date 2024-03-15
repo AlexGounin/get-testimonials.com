@@ -1,6 +1,6 @@
 {
   "todo-tree.tree.scanMode": "workspace only",
-  "editor.defaultFormatter": "dbaeumer.vscode-eslint",
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnType": false, // required
   "editor.formatOnPaste": false, // optional
   "editor.formatOnSave": true, // optional

@@ -74,6 +74,7 @@ model Product {
   reviewText       String?
   thanksText       String?
   backgroundColors String?
+  enabled          Boolean @default(true)
 
   user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId String

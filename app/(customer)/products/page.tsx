@@ -9,6 +9,7 @@ import {
 } from '@/components/ui/table';
 
 import { Card } from '@/components/ui/card';
+import Link from 'next/link';
 import type { PageParams } from '@/types/next';
 import { prisma } from '@/prisma';
 import { requiredCurrentUser } from '@/auth/current-user';
@@ -42,9 +43,12 @@ export default async function ProductsPage(props: PageParams<{}>) {
             </TableBody>
           </Table>
         ) : (
-          <button className='w-full border-2 border-dashed border-primary p-8 transition-colors hover:bg-accent/40'>
+          <Link
+            href='/products/new'
+            className='flex w-full items-center justify-center border-2 border-dashed border-primary p-8 transition-colors hover:bg-accent/40'
+          >
             Create product
-          </button>
+          </Link>
         )}
       </Card>
     </Layout>
