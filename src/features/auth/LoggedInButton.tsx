@@ -1,12 +1,12 @@
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 
-import { auth } from '@/auth/auth';
 import { Button } from '@/components/ui/button';
 import { LoggedInDropdown } from './LoggedInDropdown';
 import { SignInButton } from './SignInButton';
+import { baseAuth } from '@/auth/auth';
 
 export const LoggedInButton = async () => {
-  const session = await auth();
+  const session = await baseAuth();
 
   if (!session?.user) {
     return <SignInButton />;
