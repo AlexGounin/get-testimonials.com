@@ -1,0 +1,12 @@
+{
+  "component-without-props": {
+    "prefix": "com",
+    "description": "Create the base of a react components",
+    "scope": "typescriptreact",
+    "body": [
+      "export const ${TM_FILENAME/(.*)\\..+$/$1/} = () => {",
+      "  return $2",
+      "}"
+    ]
+  }
+}

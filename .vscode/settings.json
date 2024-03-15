@@ -1,0 +1,16 @@
+{
+  "todo-tree.tree.scanMode": "workspace only",
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnType": false, // required
+  "editor.formatOnPaste": false, // optional
+  "editor.formatOnSave": true, // optional
+  "editor.formatOnSaveMode": "file", // required to format on save
+  "files.autoSave": "onFocusChange", // optional but recommended
+  // "vs-code-prettier-eslint.prettierLast": true, // set as "true" to run 'prettier' last not first
+  "editor.codeActionsOnSave": {
+    "source.fixAll": "always",
+    "source.organizeImports": "always"
+  },
+  "jest.runMode": "on-demand",
+  "typescript.preferences.importModuleSpecifier": "shortest"
+}
