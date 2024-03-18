@@ -23,17 +23,18 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
+import { createProductAction, updateProductAction } from './product.action';
 
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { cn } from '@/lib/utils';
-import { createProductAction } from './product.action';
 import { toast } from 'sonner';
 import { useMutation } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
 
 export type ProductFormProps = {
   defaultValues?: ProductType;
+  productId?: string;
 };
 
 export const ProductForm = (props: ProductFormProps) => {
@@ -47,7 +48,12 @@ export const ProductForm = (props: ProductFormProps) => {
   const routeur = useRouter();
   const mutation = useMutation({
     mutationFn: async (values: ProductType) => {
-      const { data, serverError } = await createProductAction(values);
+      const { data, serverError } = isCreate
+        ? await createProductAction(values)
+        : await updateProductAction({
+            id: props.productId ?? '-',
+            data: values,
+          });
 
       if (serverError || !data) {
         toast.error(serverError);
@@ -87,6 +93,32 @@ export const ProductForm = (props: ProductFormProps) => {
                 </FormControl>
                 <FormDescription>
                   The name of the product to review
+                </FormDescription>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name='slug'
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Slug</FormLabel>
+                <FormControl>
+                  <Input
+                    placeholder='iPhone15'
+                    {...field}
+                    onChange={(e) => {
+                      const value = e.target.value
+                        .replaceAll(' ', '-')
+                        .toLowerCase();
+
+                      field.onChange(value);
+                    }}
+                  />
+                </FormControl>
+                <FormDescription>
+                  The slug is used in the URL of the review page.
                 </FormDescription>
                 <FormMessage />
               </FormItem>

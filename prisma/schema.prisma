@@ -68,6 +68,7 @@ enum Plan {
 
 model Product {
   id               String  @id @default(cuid())
+  slug             String  @unique
   name             String
   noteTest         String?
   informationText  String?
@@ -96,7 +97,7 @@ model Review {
   socialType SocialType?
   // Image and name getting from social
   name       String?
-  image      String
+  image      String?
 
   product   Product @relation(fields: [productId], references: [id], onDelete: Cascade)
   productId String
