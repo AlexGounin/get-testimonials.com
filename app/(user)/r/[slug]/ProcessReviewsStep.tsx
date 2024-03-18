@@ -1,5 +1,6 @@
 'use client';
 
+import { Card, CardDescription, CardHeader } from '@/components/ui/card';
 import { Product, Review } from '@prisma/client';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { AnimatePresence, motion } from 'framer-motion';
@@ -128,7 +129,41 @@ export const ProcessReviewsStep = ({ product }: { product: Product }) => {
               {product.reviewText ??
                 `Tell me what you liked or what you disliked`}
             </h2>
-            <ReviewTextSelector />
+            <ReviewTextSelector
+              onInputSend={(i) => {
+                updateData({
+                  text: i,
+                });
+              }}
+              productId={product.id}
+            />
+          </motion.div>
+        )}
+        {step === 3 && (
+          <motion.div
+            key='step-3'
+            exit={{
+              opacity: 0,
+              x: -100,
+            }}
+            initial={{
+              opacity: 0,
+              x: 100,
+            }}
+            animate={{
+              opacity: 1,
+              x: 0,
+            }}
+            className='flex h-full max-w-lg flex-col items-center justify-center gap-4'
+          >
+            <h2 className='text-lg font-bold'>
+              {product.thanksText ?? 'Thanks for your review!'}
+            </h2>
+            <Card>
+              <CardHeader>
+                <CardDescription>{reviewData.data?.text}</CardDescription>
+              </CardHeader>
+            </Card>
           </motion.div>
         )}
       </AnimatePresence>

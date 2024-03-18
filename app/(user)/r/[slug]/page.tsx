@@ -5,6 +5,8 @@ import { cn } from '@/lib/utils';
 import { prisma } from '@/prisma';
 import { notFound } from 'next/navigation';
 
+export const maxDuration = 360;
+
 export default async function ReviewProductPage(
   props: PageParams<{ slug: string }>
 ) {
