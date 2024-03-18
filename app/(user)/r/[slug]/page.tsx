@@ -1,5 +1,5 @@
 import type { PageParams } from '@/types/next';
-import { ReviewsStep } from './ReviewsStep';
+import { ProcessReviewsStep } from './ProcessReviewsStep';
 /* eslint-disable @next/next/no-img-element */
 import { cn } from '@/lib/utils';
 import { prisma } from '@/prisma';
@@ -32,7 +32,7 @@ export default async function ReviewProductPage(
         <h1 className='text-lg font-bold'>{product.name}</h1>
       </div>
       <div className='flex-1'>
-        <ReviewsStep product={product} />
+        <ProcessReviewsStep product={product} />
       </div>
     </div>
   );
