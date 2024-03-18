@@ -31,12 +31,16 @@ export default async function ProductsPage(props: PageParams<{}>) {
           <Table>
             <TableHeader>
               <TableHead>Name</TableHead>
+              <TableHead>Slug</TableHead>
             </TableHeader>
             <TableBody>
               {products.map((product) => {
                 return (
                   <TableRow key={product.id}>
-                    <TableCell>{product.name}</TableCell>
+                    <Link href={`/products/${product.id}`}>
+                      <TableCell>{product.name}</TableCell>
+                    </Link>
+                    <TableCell className='font-mono'>{product.slug}</TableCell>
                   </TableRow>
                 );
               })}
